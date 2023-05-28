@@ -2,7 +2,6 @@ package com.xueyin.tianli.service;
 
 import com.xueyin.tianli.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xueyin.tianli.entity.UserQueryObject;
 
 /**
  * <p>
