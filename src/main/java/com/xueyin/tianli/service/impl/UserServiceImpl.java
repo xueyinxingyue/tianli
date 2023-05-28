@@ -28,7 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String username = user.getUsername();
         String password = user.getPassword();
 
-        if (username == null || password == null){
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()){
             throw new IllegalArgumentException("输入的用户名或密码不能为空");
         }
 
