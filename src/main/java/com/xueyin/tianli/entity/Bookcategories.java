@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -16,16 +17,15 @@ import lombok.EqualsAndHashCode;
  * @since 2023-05-28
  */
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Bookcategories implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "categoriesId", type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Integer categoriesId;
 
-    @TableField(value = "categoriesName")
     private String categoriesName;
-
 
 }

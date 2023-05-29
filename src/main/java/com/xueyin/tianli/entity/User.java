@@ -23,14 +23,13 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "userId", type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Integer userId;
 
     private String username;
 
     private String password;
 
-    @TableField(value = "phoneNumber")
     private String phoneNumber;
 
     private String name;
