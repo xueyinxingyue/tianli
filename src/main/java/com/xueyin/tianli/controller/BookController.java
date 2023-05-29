@@ -3,7 +3,6 @@ package com.xueyin.tianli.controller;
 
 
 import com.xueyin.tianli.common.Result;
-import com.xueyin.tianli.entity.Book;
 import com.xueyin.tianli.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

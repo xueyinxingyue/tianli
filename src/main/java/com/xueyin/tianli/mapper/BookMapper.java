@@ -1,10 +1,7 @@
 package com.xueyin.tianli.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xueyin.tianli.entity.Book;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
-import java.util.List;
 
 /**
  * <p>

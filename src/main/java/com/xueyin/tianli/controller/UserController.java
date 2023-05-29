@@ -1,7 +1,5 @@
 package com.xueyin.tianli.controller;
 
-
-import com.baomidou.mybatisplus.extension.api.R;
 import com.xueyin.tianli.common.Result;
 import com.xueyin.tianli.entity.User;
 import com.xueyin.tianli.service.IUserService;
