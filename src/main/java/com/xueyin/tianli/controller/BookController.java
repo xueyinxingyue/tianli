@@ -32,7 +32,7 @@ public class BookController {
     @GetMapping("searchBooks")
     public Result searchBooks(String keyword) {
         List<Map<String, Object>> searchBooks = bookService.searchBooks(keyword);
-        return Result.success("加载成功", searchBooks);
+        return Result.success("获取成功", searchBooks);
     }
 }
 
