@@ -23,6 +23,7 @@ import java.util.Map;
  */
 @Service
 public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IBookService {
+    //条件搜索图书（若空则遍历全部）
     @Override
     public List<Map<String, Object>> searchBooks(String keyword) {
         QueryWrapper<Book> wrapper = new QueryWrapper<>();
@@ -41,4 +42,5 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
         }
         return resultList;
     }
+
 }

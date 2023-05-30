@@ -20,6 +20,9 @@ public class Result {
     public static Result success(String message){
         return new Result(200,message,null);
     }
+    public static Result success(Object data){
+        return new Result(200,null,data);
+    }
 
     //请求失败
     public static Result fail(String message){
