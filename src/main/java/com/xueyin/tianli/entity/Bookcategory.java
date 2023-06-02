@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Bookcategories implements Serializable {
+public class Bookcategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

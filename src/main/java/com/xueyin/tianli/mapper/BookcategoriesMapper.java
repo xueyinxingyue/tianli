@@ -1,6 +1,6 @@
 package com.xueyin.tianli.mapper;
 
-import com.xueyin.tianli.entity.Bookcategories;
+import com.xueyin.tianli.entity.Bookcategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author xueyin
  * @since 2023-05-28
  */
-public interface BookcategoriesMapper extends BaseMapper<Bookcategories> {
+public interface BookcategoriesMapper extends BaseMapper<Bookcategory> {
 
 }

@@ -1,7 +1,6 @@
 package com.xueyin.tianli.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -19,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Book extends Bookcategories implements Serializable {
+public class Book extends Bookcategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,11 +32,6 @@ public class Book extends Bookcategories implements Serializable {
     private String introduction;
 
     private String bookImage;
-
-    private Integer categoriesId;
-
-    @TableField(exist = false)
-    private String categoriesName;
 
     /**
      * 分类：0：both  1：男  2：女

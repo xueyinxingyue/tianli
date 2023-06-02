@@ -1,6 +1,6 @@
 package com.xueyin.tianli.service;
 
-import com.xueyin.tianli.entity.Bookcategories;
+import com.xueyin.tianli.entity.Bookcategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author xueyin
  * @since 2023-05-28
  */
-public interface IBookcategoriesService extends IService<Bookcategories> {
+public interface IBookcategoryService extends IService<Bookcategory> {
 
 }

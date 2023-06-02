@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-05-28
  */
 @RestController
-@RequestMapping("/bookcategories")
-public class BookcategoriesController {
+@RequestMapping("/bookcategory")
+public class BookcategoryController {
 
 }
 

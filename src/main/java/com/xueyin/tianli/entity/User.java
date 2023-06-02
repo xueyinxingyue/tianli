@@ -35,4 +35,9 @@ public class User implements Serializable {
 
     private String school;
 
+    /**
+     * 性别：0：保密  1：男  2：女
+     */
+    private Integer gender;
+
 }
