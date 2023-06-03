@@ -32,7 +32,11 @@ public class BookController {
     @GetMapping("searchBooks")
     public Result searchBooks(String keyword) {
         List<Map<String, Object>> searchBooks = bookService.searchBooks(keyword);
+
         return Result.success("获取成功", searchBooks);
     }
+
+    //根据id获取图书信息
+
 }
 

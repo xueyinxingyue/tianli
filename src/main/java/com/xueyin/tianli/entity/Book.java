@@ -3,6 +3,8 @@ package com.xueyin.tianli.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.sql.Clob;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,7 +31,7 @@ public class Book extends Bookcategory implements Serializable {
 
     private String writer;
 
-    private String introduction;
+    private Clob introduction;
 
     private String bookImage;
 
