@@ -1,16 +1,20 @@
 package com.xueyin.tianli.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xueyin.tianli.entity.Book;
+import com.xueyin.tianli.entity.Book_bookcategory;
+import com.xueyin.tianli.entity.Bookcategory;
 import com.xueyin.tianli.mapper.BookMapper;
+import com.xueyin.tianli.mapper.Book_bookcategoryMapper;
+import com.xueyin.tianli.mapper.BookcategoryMapper;
 import com.xueyin.tianli.service.IBookService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +28,10 @@ import java.util.Map;
  */
 @Service
 public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IBookService {
+    @Autowired
+    private BookcategoryMapper bookcategoryMapper;
+    @Autowired
+    private Book_bookcategoryMapper book_bookcategoryMapper;
 
     //条件搜索图书（若空则遍历全部）
     @Override
@@ -33,19 +41,26 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
             wrapper.like("book_name",keyword).or().like("writer",keyword);
         }
         wrapper.select("book_id", "book_name", "writer", "book_image");
-        List<Book> books = baseMapper.selectList(wrapper);
-        return getBookMapList(books);
+        List<Map<String, Object>> books = baseMapper.selectMaps(wrapper);
+        return books;
     }
-    private List<Map<String, Object>> getBookMapList(List<Book> books) {
-        List<Map<String, Object>> resultList = new ArrayList<>();
-        for (Book book : books) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("book_id", book.getBookId());
-            map.put("book_name", book.getBookName());
-            map.put("writer", book.getWriter());
-            map.put("book_image", book.getBookImage());
-            resultList.add(map);
-        }
-        return resultList;
+
+    @Override
+    public Book getById(Serializable bookId) {
+        Book book = baseMapper.selectById(bookId);
+
+        //根据book_id查询到分类列表
+        //根据id查询book_bookcategory表的bookcategory_id
+        LambdaQueryWrapper<Book_bookcategory> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Book_bookcategory::getBookId,bookId)
+                .select(Book_bookcategory::getBookcategoryId);
+
+        //根据bookcategory_id查询bookcategory里的name
+        LambdaQueryWrapper<Bookcategory> categorywrapper = new LambdaQueryWrapper<>();
+        categorywrapper.in(Bookcategory::getBookcategoryId,book_bookcategoryMapper.selectObjs(wrapper));
+
+        List<Bookcategory> bookCategories = bookcategoryMapper.selectList(categorywrapper);
+        book.setBookcategoryList(bookCategories);
+        return book;
     }
 }

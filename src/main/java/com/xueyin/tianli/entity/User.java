@@ -40,4 +40,6 @@ public class User implements Serializable {
      */
     private Integer gender;
 
+    private String avatar;
+
 }

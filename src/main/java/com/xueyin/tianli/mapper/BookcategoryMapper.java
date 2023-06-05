@@ -2,6 +2,7 @@ package com.xueyin.tianli.mapper;
 
 import com.xueyin.tianli.entity.Bookcategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author xueyin
  * @since 2023-05-28
  */
-public interface BookcategoriesMapper extends BaseMapper<Bookcategory> {
+@Repository
+public interface BookcategoryMapper extends BaseMapper<Bookcategory> {
 
 }

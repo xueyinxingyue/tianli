@@ -3,11 +3,13 @@ package com.xueyin.tianli.controller;
 
 
 import com.xueyin.tianli.common.Result;
+import com.xueyin.tianli.entity.Book;
 import com.xueyin.tianli.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,11 +34,14 @@ public class BookController {
     @GetMapping("searchBooks")
     public Result searchBooks(String keyword) {
         List<Map<String, Object>> searchBooks = bookService.searchBooks(keyword);
-
         return Result.success("获取成功", searchBooks);
     }
 
     //根据id获取图书信息
-
+    @GetMapping("bookInfo")
+    public Result bookInfo(@RequestParam Integer bookId) {
+        Book book = bookService.getById(bookId);
+        return Result.success("获取成功", book);
+    }
 }
 
