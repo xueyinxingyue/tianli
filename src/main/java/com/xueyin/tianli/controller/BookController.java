@@ -37,7 +37,7 @@ public class BookController {
         return Result.success("获取成功", searchBooks);
     }
 
-    //根据id获取图书信息
+    //根据id获取图书详细信息
     @GetMapping("bookInfo")
     public Result bookInfo(@RequestParam Integer bookId) {
         Book book = bookService.getById(bookId);

@@ -45,11 +45,11 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
         return books;
     }
 
+    //根据book_id查询到分类列表
     @Override
     public Book getById(Serializable bookId) {
         Book book = baseMapper.selectById(bookId);
 
-        //根据book_id查询到分类列表
         //根据id查询book_bookcategory表的bookcategory_id
         LambdaQueryWrapper<Book_bookcategory> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Book_bookcategory::getBookId,bookId)

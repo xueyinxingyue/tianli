@@ -32,5 +32,11 @@ public class BookcategoryController {
         List<Bookcategory> categoryList = bookcategoryService.list();
         return Result.success("所有分类信息查询成功",categoryList);
     }
+
+    //根据分类id筛选图书
+//    @GetMapping("listByCategoryId")
+//    public Result listByCategoryId(){
+//
+//    }
 }
 
