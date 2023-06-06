@@ -29,12 +29,18 @@ public class BookcategoryServiceImpl extends ServiceImpl<BookcategoryMapper, Boo
 
     @Override
     public List<Map<String,Object>> listByCategoryIds(List<Integer> categoryIds) {
+        //分类id的数组
         String categoryIdStr = categoryIds.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
 
+        //查询语句
+        String sql = "SELECT book_id FROM book_bookcategory "
+                + "WHERE bookcategory_id IN (" + categoryIdStr + ")"
+                + " GROUP BY book_id HAVING COUNT(DISTINCT bookcategory_id) = " + categoryIds.size();
+
         QueryWrapper<Book> wrapper = new QueryWrapper<>();
-        wrapper.inSql("book_id", "SELECT book_id FROM book_bookcategory WHERE bookcategory_id IN (" + categoryIdStr + ")");
+        wrapper.inSql("book_id", sql);
 
         List<Map<String,Object>> books = bookMapper.selectMaps(wrapper);
         return books;

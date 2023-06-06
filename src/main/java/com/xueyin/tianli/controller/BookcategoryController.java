@@ -39,7 +39,7 @@ public class BookcategoryController {
         return Result.success("所有分类信息查询成功",categoryList);
     }
 
-    //根据分类筛选图书(多对多)
+    //根据多个分类筛选图书
     @GetMapping("listByCategoryIds")
     public Result listByCategoryIds(@RequestParam List<Integer> categoryIds){
         List<Map<String,Object>> books = bookcategoryService.listByCategoryIds(categoryIds);
