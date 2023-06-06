@@ -2,9 +2,7 @@ package com.xueyin.tianli.controller;
 
 
 import com.xueyin.tianli.common.Result;
-import com.xueyin.tianli.entity.Book;
 import com.xueyin.tianli.entity.Bookcategory;
-import com.xueyin.tianli.service.IBookService;
 import com.xueyin.tianli.service.IBookcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +27,6 @@ import java.util.Map;
 public class BookcategoryController {
     @Autowired
     private IBookcategoryService bookcategoryService;
-    @Autowired
-    private IBookService bookService;
 
     //遍历分类
     @GetMapping("listAll")
