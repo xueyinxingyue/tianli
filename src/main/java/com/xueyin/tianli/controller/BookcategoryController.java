@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -38,10 +39,10 @@ public class BookcategoryController {
         return Result.success("所有分类信息查询成功",categoryList);
     }
 
-    //根据分类id筛选图书
+    //根据分类筛选图书(多对多)
     @GetMapping("listByCategoryIds")
     public Result listByCategoryIds(@RequestParam List<Integer> categoryIds){
-        List<Book> books = bookService.listByIds(categoryIds);
+        List<Map<String,Object>> books = bookcategoryService.listByCategoryIds(categoryIds);
         return Result.success(books);
     }
 }

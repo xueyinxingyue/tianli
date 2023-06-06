@@ -5,6 +5,7 @@ import com.xueyin.tianli.entity.Bookcategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,5 +16,5 @@ import java.util.List;
  * @since 2023-05-28
  */
 public interface IBookcategoryService extends IService<Bookcategory> {
-    List<Book> listByCategoryIds(List<Integer> categoryIds);
+    List<Map<String,Object>> listByCategoryIds(List<Integer> categoryIds);
 }

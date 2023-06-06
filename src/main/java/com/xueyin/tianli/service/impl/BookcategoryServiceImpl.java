@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -25,20 +26,17 @@ import java.util.stream.Collectors;
 public class BookcategoryServiceImpl extends ServiceImpl<BookcategoryMapper, Bookcategory> implements IBookcategoryService {
     @Autowired
     private BookMapper bookMapper;
-    @Autowired
-    private BookcategoryMapper bookcategoryMapper;
 
     @Override
-    public List<Book> listByCategoryIds(List<Integer> categoryIds) {
+    public List<Map<String,Object>> listByCategoryIds(List<Integer> categoryIds) {
         String categoryIdStr = categoryIds.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(","));
 
-        return bookMapper.selectList(new QueryWrapper<Book>()
-                        .inSql("book_id", "SELECT book_id FROM book_category WHERE category_id IN (" + categoryIdStr + ")"));
-//        QueryWrapper<Book> wrapper = new QueryWrapper<>();
-//        wrapper.inSql("book_id","select book_id from bookcategory where category_id in (" + categoryIdStr + ")");
+        QueryWrapper<Book> wrapper = new QueryWrapper<>();
+        wrapper.inSql("book_id", "SELECT book_id FROM book_bookcategory WHERE bookcategory_id IN (" + categoryIdStr + ")");
 
-//        return baseMapper.selectList(wrapper);
+        List<Map<String,Object>> books = bookMapper.selectMaps(wrapper);
+        return books;
     }
 }
