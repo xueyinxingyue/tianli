@@ -51,5 +51,12 @@ public class PostController {
         List<Map<String, Object>> searchPosts = postService.searchPosts(keyword);
         return Result.success(searchPosts);
     }
+
+    //帖子修改
+    @PutMapping("update")
+    public Result update(@RequestBody Post post){
+        postService.updateById(post);
+        return Result.success("帖子修改成功");
+    }
 }
 
