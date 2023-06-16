@@ -31,7 +31,7 @@ public class UserController {
     }
 
     //根据username和password登录
-    @GetMapping("login")
+    @PostMapping("login")
     public ResponseEntity<User> login(String username,String password) {
         User user = userService.login(username, password);
         if (user != null) {
