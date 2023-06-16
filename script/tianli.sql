@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `book`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `book` (
                         `book_id` int NOT NULL AUTO_INCREMENT,
-                        `book_name` varchar(45) NOT NULL,
-                        `writer` varchar(45) NOT NULL,
-                        `introduction` text,
-                        `book_image` varchar(255) DEFAULT NULL,
+                        `book_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                        `writer` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                        `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+                        `book_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
                         `gender` int NOT NULL DEFAULT '0' COMMENT '分类：0：both  1：男  2：女',
                         PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `book_bookcategory` (
                                      KEY `bookcategory_id_idx` (`bookcategory_id`),
                                      CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
                                      CONSTRAINT `bookcategory_id` FOREIGN KEY (`bookcategory_id`) REFERENCES `bookcategory` (`bookcategory_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,9 +79,9 @@ DROP TABLE IF EXISTS `bookcategory`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bookcategory` (
                                 `bookcategory_id` int NOT NULL AUTO_INCREMENT,
-                                `bookcategory_name` varchar(45) NOT NULL,
+                                `bookcategory_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                                 PRIMARY KEY (`bookcategory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +95,35 @@ INSERT INTO `bookcategory` VALUES (1,'现代言情'),(2,'古代言情'),(3,'青�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `post`
+--
+
+DROP TABLE IF EXISTS `post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post` (
+                        `post_id` int NOT NULL AUTO_INCREMENT,
+                        `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                        `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                        `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        `author_id` int NOT NULL,
+                        PRIMARY KEY (`post_id`),
+                        KEY `author_id_idx` (`author_id`),
+                        CONSTRAINT `author` FOREIGN KEY (`author_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post`
+--
+
+LOCK TABLES `post` WRITE;
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (1,'《三国演义》- 千古传世之作','《三国演义》以其宏大的历史背景、丰富的人物形象和扣人心弦的故事情节，展现了英雄豪杰的智勇谋略、忠诚与背叛的较量。这部经典之作不仅是一部娱乐读物，更是一部反映人性、权谋和战争的文学巨著，深深地影响着后世。','2023-06-15 19:39:23',1001),(2,'《西游记》：奇幻之旅，传世经典','孙悟空、猪八戒、沙僧和唐僧的冒险故事，融合了神话、佛教与道教元素，展现了友情、勇气和智慧的力量，令人陶醉其中。','2023-06-15 19:51:50',1002),(3,'《红楼梦》：细腻如画，情感之瑰宝','以贾宝玉、林黛玉等人的命运为线索，描绘了封建社会的荣辱悲欢，展现了人性的复杂与真实，令人沉浸其中，思考生命的意义。','2023-06-15 20:06:34',1006),(4,'《水浒传》：英雄豪杰，义薄云天','108位梁山好汉的血性与忠诚，以及他们对抗封建统治的斗争，展现了人性的善恶较量和正义的力量，令人热血沸腾，感叹世间真情。','2023-06-15 20:06:34',1001);
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -103,15 +132,15 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
                         `user_id` int NOT NULL AUTO_INCREMENT,
-                        `username` varchar(45) NOT NULL,
-                        `password` varchar(45) NOT NULL,
-                        `phone_number` varchar(45) DEFAULT NULL,
-                        `name` varchar(45) DEFAULT '萌新',
-                        `school` varchar(45) DEFAULT '未填',
+                        `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                        `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                        `phone_number` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                        `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '萌新',
+                        `school` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '未填',
                         `gender` int DEFAULT '0' COMMENT '分类：0：未填  1：男  2：女',
-                        `avatar` varchar(255) DEFAULT NULL,
+                        `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
                         PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1011 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1012 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +149,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1001,'tianli','123','12345678901','tl','广东邮电职业技术学院',1,'https://tse3-mm.cn.bing.net/th/id/OIP-C.0gxF6wlacVVPLen7jx20OwAAAA?https://tse3-mm.cn.bing.net/th/id/OIP-https://tse3-mm.cn.bing.net/th/id/OIP-C.0gxF6wlacVVPLen7jx20OwAAAA'),(1002,'hcl','hcl','11111111111','hcl','广东邮电职业技术学院',1,'https://ts1.cn.mm.bing.net/th?id=OIP-C.3km9bxf_n4tCBTqOA-gjTAAAAA'),(1006,'tianli12','123',NULL,NULL,'广东邮电职业技术学院',2,'https://tse4-mm.cn.bing.net/th/id/OIP-C.tWJsAgQdwJtZTdyl5vXoQgAAAA'),(1007,'test','123',NULL,NULL,'广东邮电职业技术学院',2,NULL),(1008,'test11','123',NULL,NULL,NULL,1,NULL),(1009,'itest','123',NULL,NULL,NULL,2,NULL),(1010,'itest1','1234','1452','',NULL,0,NULL);
+INSERT INTO `user` VALUES (1001,'tianli','123','13648451715','tl','广东邮电职业技术学院',1,'https://tse3-mm.cn.bing.net/th/id/OIP-C.0gxF6wlacVVPLen7jx20OwAAAA?https://tse3-mm.cn.bing.net/th/id/OIP-https://tse3-mm.cn.bing.net/th/id/OIP-C.0gxF6wlacVVPLen7jx20OwAAAA'),(1002,'hcl','hcl','18612489261','hcl','广东邮电职业技术学院',1,'https://ts1.cn.mm.bing.net/th?id=OIP-C.3km9bxf_n4tCBTqOA-gjTAAAAA'),(1006,'tianli12','123','13446199815','tianli','广东邮电职业技术学院',2,'https://tse4-mm.cn.bing.net/th/id/OIP-C.tWJsAgQdwJtZTdyl5vXoQgAAAA'),(1007,'test','123',NULL,NULL,'广东邮电职业技术学院',2,NULL),(1008,'test11','123',NULL,NULL,NULL,1,NULL),(1009,'itest','123',NULL,NULL,NULL,2,NULL),(1010,'itest1','1234','1452','',NULL,0,NULL),(1011,'15264','1234',NULL,'萌新','未填',0,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -133,4 +162,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-07 22:43:27
+-- Dump completed on 2023-06-16 20:38:06
