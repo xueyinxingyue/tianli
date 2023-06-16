@@ -17,4 +17,7 @@ import java.util.Map;
  */
 public interface IBookcategoryService extends IService<Bookcategory> {
     List<Map<String,Object>> listByCategoryIds(List<Integer> categoryIds);
+
+    void insert(Bookcategory bookcategory);
+
 }

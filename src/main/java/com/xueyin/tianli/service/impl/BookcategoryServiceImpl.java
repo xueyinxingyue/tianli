@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 public class BookcategoryServiceImpl extends ServiceImpl<BookcategoryMapper, Bookcategory> implements IBookcategoryService {
     @Autowired
     private BookMapper bookMapper;
+    @Autowired
+    private BookcategoryMapper bookcategoryMapper;
 
     @Override
     public List<Map<String,Object>> listByCategoryIds(List<Integer> categoryIds) {
@@ -45,4 +47,19 @@ public class BookcategoryServiceImpl extends ServiceImpl<BookcategoryMapper, Boo
         List<Map<String,Object>> books = bookMapper.selectMaps(wrapper);
         return books;
     }
+
+    @Override
+    public void insert(Bookcategory bookcategory) {
+        String bookcategoryName = bookcategory.getBookcategoryName();
+
+        QueryWrapper<Bookcategory> wrapper = new QueryWrapper<>();
+        wrapper.eq("bookcategory_name",bookcategoryName);
+        Bookcategory checkCategory = bookcategoryMapper.selectOne(wrapper);
+        if (checkCategory != null){
+            throw new RuntimeException("分类已存在");
+        } else {
+            bookcategoryMapper.insert(bookcategory);
+        }
+    }
+
 }

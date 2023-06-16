@@ -3,13 +3,10 @@ package com.xueyin.tianli.controller;
 
 import com.xueyin.tianli.common.Result;
 import com.xueyin.tianli.entity.Bookcategory;
+import com.xueyin.tianli.mapper.BookcategoryMapper;
 import com.xueyin.tianli.service.IBookcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -40,6 +37,27 @@ public class BookcategoryController {
     public Result listByCategoryIds(@RequestParam List<Integer> categoryIds){
         List<Map<String,Object>> books = bookcategoryService.listByCategoryIds(categoryIds);
         return Result.success(books);
+    }
+
+    //添加分类
+    @PostMapping("insert")
+    public Result insert(Bookcategory bookcategory) {
+        bookcategoryService.insert(bookcategory);
+        return Result.success("添加成功");
+    }
+
+    //删除分类
+    @DeleteMapping("delete")
+    public Result delete(Integer id){
+        bookcategoryService.removeById(id);
+        return Result.success("分类删除成功");
+    }
+
+    //修改分类
+    @PutMapping("update")
+    public Result update(Bookcategory bookcategory){
+        bookcategoryService.updateById(bookcategory);
+        return Result.success("分类修改成功");
     }
 }
 
