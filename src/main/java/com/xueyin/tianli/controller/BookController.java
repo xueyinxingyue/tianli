@@ -30,35 +30,35 @@ public class BookController {
     @GetMapping("searchBooks")
     public Result searchBooks(String keyword) {
         List<Map<String, Object>> searchBooks = bookService.searchBooks(keyword);
-        return Result.success("获取成功", searchBooks);
+        return Result.success("图书获取成功", searchBooks);
     }
 
     //根据id获取图书详细信息
     @GetMapping("bookInfo")
     public Result bookInfo(@RequestParam Integer bookId) {
         Book book = bookService.getById(bookId);
-        return Result.success("获取成功", book);
+        return Result.success("图书信息获取成功", book);
     }
 
     //图书添加
     @PostMapping("insert")
     public Result insert(@RequestBody Book book){
         bookService.save(book);
-        return Result.success("成功添加");
+        return Result.success("图书添加成功");
     }
 
     //图书删除
     @DeleteMapping("delete")
     public Result delete(Integer id){
         bookService.removeById(id);
-        return Result.success("成功删除");
+        return Result.success("图书删除成功");
     }
 
     //图书信息修改
     @PutMapping("update")
     public Result update(@RequestBody Book book){
         bookService.updateById(book);
-        return Result.success("修改成功");
+        return Result.success("图书修改成功");
     }
 }
 
