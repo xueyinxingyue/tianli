@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2023-06-20
  */
 @RestController
-@RequestMapping("/user_notification")
+@RequestMapping("/userNotification")
 public class UserNotificationController {
 
 }
