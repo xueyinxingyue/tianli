@@ -28,7 +28,7 @@ public class PostController {
     @PostMapping("insert")
     public Result insert(@RequestBody Post post){
         postService.save(post);
-        return Result.success("发帖成功");
+        return Result.success("帖子发送成功");
     }
 
     //帖子删除

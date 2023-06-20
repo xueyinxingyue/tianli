@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("create")
     public Result create(User user){
         userService.create(user);
-        return Result.success("注册成功");
+        return Result.success("用户注册成功");
     }
 
     //根据username和password登录
@@ -45,14 +45,14 @@ public class UserController {
     @GetMapping("get")
     public Result get(Long userId){
         User user = userService.getById(userId);
-        return Result.success("加载成功",user);
+        return Result.success("用户信息加载成功",user);
     }
 
     //修改用户信息
     @PutMapping("update")
     public Result update(User user){
         userService.updateById(user);
-        return Result.success("保存成功");
+        return Result.success("用户信息保存成功");
     }
 }
 

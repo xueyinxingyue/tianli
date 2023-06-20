@@ -29,7 +29,7 @@ public class BookcategoryController {
     @GetMapping("listAll")
     public Result listAll(){
         List<Bookcategory> categoryList = bookcategoryService.list();
-        return Result.success("所有分类信息查询成功",categoryList);
+        return Result.success("分类信息查询成功",categoryList);
     }
 
     //根据多个分类筛选图书
@@ -43,7 +43,7 @@ public class BookcategoryController {
     @PostMapping("insert")
     public Result insert(Bookcategory bookcategory) {
         bookcategoryService.insert(bookcategory);
-        return Result.success("添加成功");
+        return Result.success("分类添加成功");
     }
 
     //删除分类
