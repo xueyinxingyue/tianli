@@ -3,10 +3,10 @@ package com.xueyin.tianli.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xueyin.tianli.entity.Book;
-import com.xueyin.tianli.entity.Book_bookcategory;
+import com.xueyin.tianli.entity.BookBookcategory;
 import com.xueyin.tianli.entity.Bookcategory;
 import com.xueyin.tianli.mapper.BookMapper;
-import com.xueyin.tianli.mapper.Book_bookcategoryMapper;
+import com.xueyin.tianli.mapper.BookBookcategoryMapper;
 import com.xueyin.tianli.mapper.BookcategoryMapper;
 import com.xueyin.tianli.service.IBookService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -31,7 +31,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
     @Autowired
     private BookcategoryMapper bookcategoryMapper;
     @Autowired
-    private Book_bookcategoryMapper book_bookcategoryMapper;
+    private BookBookcategoryMapper book_bookcategoryMapper;
 
     //条件搜索图书（若空则遍历全部）
     @Override
@@ -51,9 +51,9 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
         Book book = baseMapper.selectById(bookId);
 
         //根据id查询book_bookcategory表的bookcategory_id
-        LambdaQueryWrapper<Book_bookcategory> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Book_bookcategory::getBookId,bookId)
-                .select(Book_bookcategory::getBookcategoryId);
+        LambdaQueryWrapper<BookBookcategory> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(BookBookcategory::getBookId,bookId)
+                .select(BookBookcategory::getBookcategoryId);
 
         //根据bookcategory_id查询bookcategory里的name
         LambdaQueryWrapper<Bookcategory> categorywrapper = new LambdaQueryWrapper<>();

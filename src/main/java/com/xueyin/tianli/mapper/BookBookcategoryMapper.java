@@ -1,6 +1,6 @@
 package com.xueyin.tianli.mapper;
 
-import com.xueyin.tianli.entity.Book_bookcategory;
+import com.xueyin.tianli.entity.BookBookcategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @since 2023-06-05
  */
 @Repository
-public interface Book_bookcategoryMapper extends BaseMapper<Book_bookcategory> {
+public interface BookBookcategoryMapper extends BaseMapper<BookBookcategory> {
 
 }

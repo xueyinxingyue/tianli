@@ -23,7 +23,7 @@ public class Post implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "post_id", type = IdType.AUTO)
-    private Integer post_id;
+    private Integer postId;
 
     private String title;
 
@@ -31,7 +31,7 @@ public class Post implements Serializable {
 
     private LocalDateTime time;
 
-    private Integer author_id;
+    private Integer authorId;
 
     @TableField(exist = false)
     private String name;
