@@ -28,17 +28,17 @@ public class NotificationController {
     @PostMapping("insert")
     public Result insert(@RequestBody Notification notification){
         notificationService.save(notification);
-        return Result.success("成功添加");
+        return Result.success("通知添加成功");
     }
 
     //通知删除
     @DeleteMapping("delete")
     public Result delete(Integer id){
         notificationService.removeById(id);
-        return Result.success("成功删除编号为： " + id + " 的通知");
+        return Result.success("通知删除成功");
     }
 
-    //通知搜索
+    //通知搜索（若keyword为空则查询所有）
     @GetMapping("list")
     public Result list(String keyword){
         List<Map<String, Object>> notifications = notificationService.getNotifications(keyword);
@@ -49,7 +49,7 @@ public class NotificationController {
     @PutMapping("update")
     public Result update(@RequestBody Notification notification){
         notificationService.updateById(notification);
-        return Result.success("修改成功");
+        return Result.success("通知修改成功");
     }
 }
 
