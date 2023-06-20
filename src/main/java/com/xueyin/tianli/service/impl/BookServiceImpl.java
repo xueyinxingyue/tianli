@@ -31,7 +31,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
     @Autowired
     private BookcategoryMapper bookcategoryMapper;
     @Autowired
-    private BookBookcategoryMapper book_bookcategoryMapper;
+    private BookBookcategoryMapper bookBookcategoryMapper;
 
     //条件搜索图书（若空则遍历全部）
     @Override
@@ -57,7 +57,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 
         //根据bookcategory_id查询bookcategory里的name
         LambdaQueryWrapper<Bookcategory> categorywrapper = new LambdaQueryWrapper<>();
-        categorywrapper.in(Bookcategory::getBookcategoryId,book_bookcategoryMapper.selectObjs(wrapper));
+        categorywrapper.in(Bookcategory::getBookcategoryId,bookBookcategoryMapper.selectObjs(wrapper));
 
         List<Bookcategory> bookCategories = bookcategoryMapper.selectList(categorywrapper);
         book.setBookcategoryList(bookCategories);

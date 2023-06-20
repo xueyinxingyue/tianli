@@ -28,7 +28,6 @@ import java.util.Map;
 @Service
 public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IPostService {
     @Autowired
-
     private PostMapper postMapper;
 
     @Override
