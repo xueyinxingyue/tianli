@@ -21,8 +21,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    //code 200      message:操作成功    data：{}
-
     //用户注册
     @GetMapping("create")
     public Result create(User user){
