@@ -23,7 +23,7 @@ public class Bookcategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "bookcategory_id", type = IdType.AUTO)
     private Integer bookcategoryId;
 
     private String bookcategoryName;

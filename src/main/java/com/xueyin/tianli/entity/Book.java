@@ -19,13 +19,12 @@ import lombok.NoArgsConstructor;
  * @since 2023-05-28
  */
 @Data
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Book extends Bookcategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId
+    @TableId(value = "book_id", type = IdType.AUTO)
     private Integer bookId;
 
     private String bookName;
