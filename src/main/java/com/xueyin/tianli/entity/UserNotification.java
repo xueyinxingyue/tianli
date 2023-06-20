@@ -22,11 +22,11 @@ public class UserNotification implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "user_notification_id", type = IdType.AUTO)
-    private Integer user_notificationId;
+    private Integer userNotificationId;
 
     private Integer userId;
 
-    private Integer notification;
+    private Integer notificationId;
 
     private Boolean isRead;
 
