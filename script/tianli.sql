@@ -31,7 +31,7 @@ CREATE TABLE `book`
     `book_image`   varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci         DEFAULT NULL,
     `gender`       int                                                          NOT NULL DEFAULT '0' COMMENT '分类：0：both  1：男  2：女',
     PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,6 +155,39 @@ UNLOCK
 TABLES;
 
 --
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notification`
+(
+    `notification_id` int          NOT NULL AUTO_INCREMENT,
+    `title`           varchar(255) NOT NULL,
+    `content`         text         NOT NULL,
+    `create_time`     timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_time`     timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`notification_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification`
+--
+
+LOCK
+TABLES `notification` WRITE;
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+INSERT INTO `notification`
+VALUES (1, '欢迎来到天理图书！',
+        '天理图书欢迎每一位新朋友！欢迎加入我们的社交平台，为了更好地为您提供个性化的服务，并保护您的账户安全，请您尽快完善个人信息！',
+        '2023-06-20 09:59:05', '2023-06-20 10:02:09');
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK
+TABLES;
+
+--
 -- Table structure for table `post`
 --
 
@@ -164,14 +197,14 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post`
 (
     `post_id`   int      NOT NULL AUTO_INCREMENT,
-    `title`     varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+    `title`     varchar(50)       DEFAULT NULL,
     `content`   text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-    `time`      datetime NOT NULL                                            DEFAULT CURRENT_TIMESTAMP,
+    `time`      datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `author_id` int      NOT NULL,
     PRIMARY KEY (`post_id`),
     KEY         `author_id_idx` (`author_id`),
     CONSTRAINT `author` FOREIGN KEY (`author_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,6 +274,52 @@ VALUES (1001, 'tianli', '123', '13648451715', 'tl', '广东邮电职业技术学
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK
 TABLES;
+
+--
+-- Table structure for table `user_notification`
+--
+
+DROP TABLE IF EXISTS `user_notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_notification`
+(
+    `user_notification_id` int NOT NULL AUTO_INCREMENT,
+    `user_id`              int NOT NULL,
+    `notification_id`      int NOT NULL,
+    `is_read`              tinyint(1) DEFAULT '0',
+    `create_time`          timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_time`          timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`user_notification_id`),
+    KEY                    `notification_idx` (`notification_id`),
+    KEY                    `user_idx` (`user_id`),
+    CONSTRAINT `notification` FOREIGN KEY (`notification_id`) REFERENCES `notification` (`notification_id`),
+    CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_notification`
+--
+
+LOCK
+TABLES `user_notification` WRITE;
+/*!40000 ALTER TABLE `user_notification` DISABLE KEYS */;
+INSERT INTO `user_notification`
+VALUES (10, 1001, 1, 0, '2023-06-21 14:23:40', NULL),
+       (11, 1001, 1, 0, '2023-06-21 14:36:11', NULL),
+       (12, 1001, 1, 0, '2023-06-21 15:04:14', NULL),
+       (13, 1001, 1, 0, '2023-06-21 15:05:22', NULL),
+       (14, 1002, 1, 0, '2023-06-21 15:05:22', NULL),
+       (15, 1006, 1, 0, '2023-06-21 15:05:22', NULL),
+       (16, 1007, 1, 0, '2023-06-21 15:05:22', NULL),
+       (17, 1008, 1, 0, '2023-06-21 15:05:22', NULL),
+       (18, 1009, 1, 0, '2023-06-21 15:05:22', NULL),
+       (19, 1010, 1, 0, '2023-06-21 15:05:22', NULL),
+       (20, 1011, 1, 0, '2023-06-21 15:05:22', NULL);
+/*!40000 ALTER TABLE `user_notification` ENABLE KEYS */;
+UNLOCK
+TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -251,4 +330,4 @@ TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-17 19:21:07
+-- Dump completed on 2023-06-22  0:07:01
