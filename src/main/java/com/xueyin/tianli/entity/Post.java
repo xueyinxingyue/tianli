@@ -3,8 +3,9 @@ package com.xueyin.tianli.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,7 +30,7 @@ public class Post implements Serializable {
 
     private String content;
 
-    private LocalDateTime time;
+    private Date time;
 
     private Integer authorId;
 

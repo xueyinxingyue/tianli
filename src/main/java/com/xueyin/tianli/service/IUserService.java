@@ -3,6 +3,8 @@ package com.xueyin.tianli.service;
 import com.xueyin.tianli.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类

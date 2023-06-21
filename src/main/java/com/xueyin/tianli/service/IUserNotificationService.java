@@ -3,6 +3,9 @@ package com.xueyin.tianli.service;
 import com.xueyin.tianli.entity.UserNotification;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserNotificationService extends IService<UserNotification> {
 
+    void sendUsers(Integer notificationId, Integer userId);
+
+    List<Map<String,Object>> getByUserId(Integer userId);
 }

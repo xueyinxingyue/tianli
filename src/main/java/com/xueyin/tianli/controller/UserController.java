@@ -43,7 +43,7 @@ public class UserController {
 
     //根据id获取用户信息
     @GetMapping("get")
-    public Result get(Long userId){
+    public Result get(Integer userId){
         User user = userService.getById(userId);
         return Result.success("用户信息加载成功",user);
     }
