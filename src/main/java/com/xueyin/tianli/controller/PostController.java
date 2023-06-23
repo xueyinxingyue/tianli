@@ -45,6 +45,13 @@ public class PostController {
         return Result.success(posts);
     }
 
+    //帖子详细页
+    @GetMapping("get")
+    public Result get(Integer postId){
+        Post post = postService.getById(postId);
+        return Result.success(post);
+    }
+
     //帖子搜索
     @GetMapping("searchPosts")
     public Result searchPosts(@RequestParam("keyword") String keyword){
