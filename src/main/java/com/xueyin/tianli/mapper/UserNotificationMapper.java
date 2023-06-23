@@ -19,6 +19,6 @@ import java.util.Map;
  */
 @Mapper
 public interface UserNotificationMapper extends BaseMapper<UserNotification> {
-    @Select("SELECT n.title, n.content,un.is_read,un.create_time FROM user_notification un JOIN notification n ON un.notification_id = n.notification_id WHERE un.user_id = #{userId} order by un.create_time desc;")
+    @Select("SELECT un.user_notification_id,n.title, n.content,un.is_read,un.create_time FROM user_notification un JOIN notification n ON un.notification_id = n.notification_id WHERE un.user_id = #{userId} order by un.create_time desc;")
     List<Map<String, Object>> getNotificationsByUserId(@Param("userId") Integer userId);
 }

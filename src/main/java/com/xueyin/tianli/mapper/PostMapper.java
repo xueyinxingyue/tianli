@@ -20,9 +20,9 @@ import java.util.Map;
  */
 @Mapper
 public interface PostMapper extends BaseMapper<Post> {
-    @Select("SELECT p.title, p.content, p.time, u.name, u.avatar FROM post p JOIN user u ON p.author_id = u.user_id ORDER BY p.time DESC")
+    @Select("SELECT p.post_id,p.title, p.content, p.time, u.name, u.avatar FROM post p JOIN user u ON p.author_id = u.user_id ORDER BY p.time DESC")
     List<Map<String, Object>> getPosts();
 
-    @Select("SELECT p.title, p.content, p.time, u.name, u.avatar FROM post p JOIN user u ON p.author_id = u.user_id WHERE p.title LIKE CONCAT('%', #{keyword}, '%') OR p.content LIKE CONCAT('%', #{keyword}, '%') ORDER BY p.time DESC")
+    @Select("SELECT p.post_id,p.title, p.content, p.time, u.name, u.avatar FROM post p JOIN user u ON p.author_id = u.user_id WHERE p.title LIKE CONCAT('%', #{keyword}, '%') OR p.content LIKE CONCAT('%', #{keyword}, '%') ORDER BY p.time DESC")
     List<Map<String, Object>> searchPosts(@Param("keyword") String keyword);
 }
