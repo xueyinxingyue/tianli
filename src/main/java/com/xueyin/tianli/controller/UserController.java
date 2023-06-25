@@ -50,7 +50,7 @@ public class UserController {
 
     //修改用户信息
     @PutMapping("update")
-    public Result update(User user){
+    public Result update(@RequestBody User user){
         userService.updateById(user);
         return Result.success("用户信息保存成功");
     }
